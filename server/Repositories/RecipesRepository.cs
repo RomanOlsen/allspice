@@ -51,8 +51,19 @@ public class RecipesRepository
     return recipe;
   }
 
-  internal Recipe UpdateRecipe(Recipe foundRecipe)
+  internal Recipe UpdateRecipe(Recipe recipeData)
   {
-    throw new NotImplementedException();
+    string sql = @"UPDATE recipes SET 
+    title = @Title,
+    instructions = @Instructions,
+    img = @Img,
+    category = @Category
+    
+    WHERE id = @Id LIMIT 1;";
+
+    _db.Execute(sql, recipeData);
+    Recipe recipe = this.GetRecipeById(recipeData.Id);
+
+    return recipe;
   }
 }
