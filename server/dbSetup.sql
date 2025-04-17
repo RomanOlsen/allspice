@@ -17,12 +17,16 @@ CREATE TABLE recipes(
   instructions varchar(5000), 
   img varchar(1000) NOT NULL,
   category ENUM('breakfast', 'lunch', 'dinner', 'snack', 'dessert') NOT NULL,
+  creator_id VARCHAR(255) not null,
   FOREIGN KEY (creator_id) REFERENCES accounts(id) ON DELETE CASCADE
 );
+
 
 SELECT * FROM recipes
 
 DROP TABLE recipes;
+DROP TABLE ingredients;
+DROP TABLE favorites;
 
 CREATE TABLE ingredients(
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
