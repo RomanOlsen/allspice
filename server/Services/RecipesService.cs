@@ -1,5 +1,6 @@
 
 
+
 namespace allspice.Services;
 
 public class RecipesService
@@ -24,6 +25,21 @@ public class RecipesService
   internal Recipe GetRecipeById(int recipeId)
   {
     Recipe recipe = _recipesRepository.GetRecipeById(recipeId);
+    return recipe;
+  }
+
+  internal Recipe UpdateRecipe(int recipeId, Account userInfo)
+  {
+    Recipe foundRecipe = GetRecipeById(recipeId);
+    if (foundRecipe is null)
+    {
+      throw new Exception("We couldnt find a recipe with that id, so theres no way to update it");
+    }
+    if (foundRecipe.CreatorId != userInfo.Id)
+    {
+      throw new Exception("403 forbidden error. You cannot edit someone else's recipe");
+    }
+    Recipe recipe = _recipesRepository.UpdateRecipe(foundRecipe);
     return recipe;
   }
 }

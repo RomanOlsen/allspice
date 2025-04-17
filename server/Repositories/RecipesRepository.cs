@@ -50,4 +50,9 @@ public class RecipesRepository
 
     return recipe;
   }
+
+  internal Recipe UpdateRecipe(Recipe foundRecipe)
+  {
+    throw new NotImplementedException();
+  }
 }
