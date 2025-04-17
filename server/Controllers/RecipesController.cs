@@ -64,8 +64,8 @@ public class RecipesController : ControllerBase
     try
     {
       Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
-      Recipe recipe = _recipesService.UpdateRecipe(recipeData, recipeId, userInfo);
-      return Ok(recipe);
+      _recipesService.UpdateRecipe(recipeData, recipeId, userInfo);
+      return Ok();
     }
     catch (Exception e)
     {

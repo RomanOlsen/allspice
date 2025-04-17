@@ -28,7 +28,7 @@ public class RecipesService
     return recipe;
   }
 
-  internal Recipe UpdateRecipe(Recipe recipeData, int recipeId, Account userInfo)
+  internal void UpdateRecipe(Recipe recipeData, int recipeId, Account userInfo)
   {
     Recipe foundRecipe = GetRecipeById(recipeId);
     if (foundRecipe is null)
@@ -39,7 +39,15 @@ public class RecipesService
     {
       throw new Exception("403 forbidden error. You cannot edit someone else's recipe");
     }
-    Recipe recipe = _recipesRepository.UpdateRecipe(recipeData);
-    return recipe;
+
+    foundRecipe.Title = recipeData.Title ?? foundRecipe.Title;
+    foundRecipe.Instructions = recipeData.Instructions ?? foundRecipe.Instructions;
+    foundRecipe.Img = recipeData.Img ?? foundRecipe.Img;
+    foundRecipe.Category = recipeData.Category ?? foundRecipe.Category;
+
+
+
+    _recipesRepository.UpdateRecipe(foundRecipe);
+    // return recipe;
   }
 }

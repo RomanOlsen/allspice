@@ -51,7 +51,7 @@ public class RecipesRepository
     return recipe;
   }
 
-  internal Recipe UpdateRecipe(Recipe recipeData)
+  internal void UpdateRecipe(Recipe foundRecipe)
   {
     string sql = @"UPDATE recipes SET 
     title = @Title,
@@ -61,9 +61,10 @@ public class RecipesRepository
     
     WHERE id = @Id LIMIT 1;";
 
-    _db.Execute(sql, recipeData);
-    Recipe recipe = this.GetRecipeById(recipeData.Id);
+    _db.Execute(sql, foundRecipe);
+    // Recipe recipe = this.GetRecipeById(recipeData.Id);
+    // return recipe;
 
-    return recipe;
+    // return recipeData;
   }
 }
