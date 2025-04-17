@@ -52,3 +52,6 @@ CREATE TABLE favorites(
 );
 
 select * from favorites;
+
+SELECT recipes.*, accounts.* FROM recipes
+    INNER JOIN accounts ON accounts.id = recipes.creator_id

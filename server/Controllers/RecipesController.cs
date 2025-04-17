@@ -28,5 +28,19 @@ public class RecipesController : ControllerBase
       return BadRequest(e.Message);
     }
   }
-  // [HttpGet]
+
+  [HttpGet]
+  public ActionResult<List<Recipe>> GetAllRecipes()
+  {
+    try
+    {
+      List<Recipe> recipes = _recipesService.GetAllRecipes();
+      return recipes;
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
+
 }
