@@ -33,7 +33,8 @@ public class AccountController : ControllerBase
     try
     {
       Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
-      List<FavoriteRecipe> favorites = _accountService.GetAccountFavoriteRecipes(userInfo);
+      string userInfoId = userInfo.Id;
+      List<FavoriteRecipe> favorites = _accountService.GetAccountFavoriteRecipes(userInfoId);
       return Ok(favorites);
     }
     catch (Exception e)

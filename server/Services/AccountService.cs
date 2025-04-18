@@ -37,9 +37,9 @@ public class AccountService
     return _repo.Edit(original);
   }
 
-  internal List<FavoriteRecipe> GetAccountFavoriteRecipes(Account userInfo)
+  internal List<FavoriteRecipe> GetAccountFavoriteRecipes(string userInfoId)
   {
-    List<FavoriteRecipe> favorites = _repo.GetAccountFavoriteRecipes(userInfo);
+    List<FavoriteRecipe> favorites = _repo.GetAccountFavoriteRecipes(userInfoId);
     return favorites;
   }
 }
