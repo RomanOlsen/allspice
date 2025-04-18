@@ -36,4 +36,10 @@ public class AccountService
     original.Picture = editData.Picture ?? editData.Picture;
     return _repo.Edit(original);
   }
+
+  internal List<FavoriteRecipe> GetAccountFavoriteRecipes(Account userInfo)
+  {
+    List<FavoriteRecipe> favorites = _repo.GetAccountFavoriteRecipes(userInfo);
+    return favorites;
+  }
 }
