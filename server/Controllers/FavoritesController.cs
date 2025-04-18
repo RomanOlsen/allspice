@@ -15,12 +15,13 @@ public class FavoritesController : ControllerBase
 
   [Authorize]
   [HttpPost]
-  public async Task<ActionResult<Favorite>> CreateFavoriteRecipe([FromBody] int recipeId) // int or Favorite type?
+  public async Task<ActionResult<Favorite>> CreateFavoriteRecipe([FromBody] Favorite favoriteData) // int or Favorite type?
   {
     try
     {
       Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
-      Favorite favorite = _favoritesService.CreateFavoriteRecipe(recipeId);
+      favoriteData.AccountId = userInfo.Id;
+      Favorite favorite = _favoritesService.CreateFavoriteRecipe(favoriteData);
       return Ok(favorite);
     }
     catch (Exception e)

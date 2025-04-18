@@ -45,10 +45,12 @@ CREATE TABLE favorites(
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
   recipe_id int not null,
-  FOREIGN KEY (recipe_id) REFERENCES recipes(id) ON DELETE CASCADE,
   account_id varchar(255) not null,
+  FOREIGN KEY (recipe_id) REFERENCES recipes(id) ON DELETE CASCADE,
   FOREIGN KEY (account_id) REFERENCES accounts(id) ON DELETE CASCADE
 );
+
+DROP TABLE favorites;
 
 select * from favorites;
 

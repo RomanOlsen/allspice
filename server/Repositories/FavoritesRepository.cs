@@ -9,17 +9,23 @@ public class FavoritesRepository
   }
   private readonly IDbConnection _db;
 
-  internal Favorite CreateFavoriteRecipe(int recipeId)
+  internal Favorite CreateFavoriteRecipe(Favorite favoriteData)
   {
     string sql = @"
     INSERT INTO favorites (recipe_id, account_id) 
     VALUES (@RecipeId, @AccountId);
     
-    SELECT * FROM favorites WHERE id = LAST_INSERT_ID();
+    SELECT favorites.*, recipes.* FROM favorites
+     INNER JOIN recipes ON recipes.id = favorites.recipe_id
+     WHERE favorites.id = LAST_INSERT_ID();
     
     ";
 
-    Favorite favorite = _db.Query<Favorite>(sql, new { recipeId }).SingleOrDefault();
+    Favorite favorite = _db.Query(sql, (FavoriteRecipe favorite, Account account) =>
+    {
+      favorite.Creator = account;
+      return favorite;
+    }, favoriteData).SingleOrDefault();
 
     return favorite;
   }
