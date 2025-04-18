@@ -9,8 +9,8 @@ public class Favorite
   public string AccountId { get; set; }
 }
 
-public class FavoriteRecipe : Favorite
-{
-  public Account Creator { get; set; }
-  public Recipe Recipe { get; set; }
-}
+// public class FavoriteRecipe : Favorite
+// {
+//   public Account Creator { get; set; }
+//   public Recipe Recipe { get; set; }
+// }

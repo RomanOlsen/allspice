@@ -13,3 +13,12 @@ public class Recipe
 
   public Account Creator { get; set; }
 }
+
+public class FavoriteRecipe : Recipe
+{
+  // public Account Creator { get; set; } not needed since recipe inherits it
+  // public Recipe Recipe { get; set; }
+
+
+  public int FavoriteId { get; set; }
+}

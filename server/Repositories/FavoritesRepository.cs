@@ -9,7 +9,7 @@ public class FavoritesRepository
   }
   private readonly IDbConnection _db;
 
-  internal Favorite CreateFavoriteRecipe(Favorite favoriteData)
+  internal FavoriteRecipe CreateFavoriteRecipe(Favorite favoriteData)
   {
     string sql = @"
     INSERT INTO favorites (recipe_id, account_id) 
@@ -17,16 +17,18 @@ public class FavoritesRepository
     
     SELECT favorites.*, recipes.*, accounts.* FROM favorites
      INNER JOIN recipes ON recipes.id = favorites.recipe_id
-     INNER JOIN accounts ON accounts.id = favorites.account_id
+     INNER JOIN accounts ON recipes.creator_id = accounts.id
      WHERE favorites.id = LAST_INSERT_ID();
     
     ";
 
-    Favorite favorite = _db.Query(sql, (FavoriteRecipe favorite, Recipe recipe, Account account) =>
+    FavoriteRecipe favorite = _db.Query(sql, (Favorite favorite, FavoriteRecipe favoriteRecipe, Account account) =>
     {
-      favorite.Recipe = recipe;
-      favorite.Creator = account;
-      return favorite;
+      favoriteRecipe.FavoriteId = favorite.Id;
+      favoriteRecipe.Creator = account;
+
+      // favorite = recipe;
+      return favoriteRecipe;
     }, favoriteData).SingleOrDefault();
 
     return favorite;

@@ -60,3 +60,9 @@ SELECT recipes.*, accounts.* FROM recipes
 -- 
 INSERT INTO ingredients (id, name, quantity, recipe_id)
 VALUES ()
+
+SELECT * FROM favorites;
+
+SELECT favorites.*, recipes.* FROM favorites
+     INNER JOIN recipes ON recipes.id = favorites.recipe_id
+     WHERE favorites.id = 3;

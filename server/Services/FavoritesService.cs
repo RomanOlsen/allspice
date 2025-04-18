@@ -8,9 +8,9 @@ public class FavoritesService
     _repository = favoritesRepository;
   }
   private readonly FavoritesRepository _repository;
-  internal Favorite CreateFavoriteRecipe(Favorite favoriteData)
+  internal FavoriteRecipe CreateFavoriteRecipe(Favorite favoriteData)
   {
-    Favorite favorite = _repository.CreateFavoriteRecipe(favoriteData);
+    FavoriteRecipe favorite = _repository.CreateFavoriteRecipe(favoriteData);
     return favorite;
   }
 }
