@@ -7,24 +7,24 @@ public class RecipesService
 {
   public RecipesService(RecipesRepository recipesRepository)
   {
-    _recipesRepository = recipesRepository;
+    _repository = recipesRepository;
   }
-  private readonly RecipesRepository _recipesRepository;
+  private readonly RecipesRepository _repository;
   internal Recipe CreateRecipe(Recipe recipeData)
   {
-    Recipe recipe = _recipesRepository.CreateRecipe(recipeData);
+    Recipe recipe = _repository.CreateRecipe(recipeData);
     return recipe;
   }
 
   internal List<Recipe> GetAllRecipes()
   {
-    List<Recipe> recipes = _recipesRepository.GetAllRecipes();
+    List<Recipe> recipes = _repository.GetAllRecipes();
     return recipes;
   }
 
   internal Recipe GetRecipeById(int recipeId)
   {
-    Recipe recipe = _recipesRepository.GetRecipeById(recipeId);
+    Recipe recipe = _repository.GetRecipeById(recipeId);
 
     if (recipe is null)
     {
@@ -50,7 +50,7 @@ public class RecipesService
 
 
 
-    _recipesRepository.UpdateRecipe(foundRecipe);
+    _repository.UpdateRecipe(foundRecipe);
     // return recipe;
   }
 
@@ -62,6 +62,6 @@ public class RecipesService
     {
       throw new Exception("403 forbidden error. You cannot delete someone else's recipe");
     }
-    _recipesRepository.DeleteRecipe(recipeId);
+    _repository.DeleteRecipe(recipeId);
   }
 }

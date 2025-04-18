@@ -34,7 +34,6 @@ CREATE TABLE ingredients(
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
   name varchar(255) NOT NULL,
   quantity varchar(255) NOT NULL,
-  -- recipe_id INT FOREIGN KEY AUTO_INCREMENT NOT NULL -- later on change this to match recipe
   recipe_id int not null,
   FOREIGN KEY (recipe_id) REFERENCES recipes(id) ON DELETE CASCADE
 );
@@ -55,3 +54,7 @@ select * from favorites;
 
 SELECT recipes.*, accounts.* FROM recipes
     INNER JOIN accounts ON accounts.id = recipes.creator_id
+
+-- 
+INSERT INTO ingredients (id, name, quantity, recipe_id)
+VALUES ()

@@ -4,13 +4,15 @@ namespace allspice.Controllers;
 [Route("api/[controller]")]
 public class RecipesController : ControllerBase
 {
-  public RecipesController(RecipesService recipesService, Auth0Provider auth0Provider) // constructor
+  public RecipesController(RecipesService recipesService, Auth0Provider auth0Provider, IngredientsService ingredientsService) // constructor
   {
     _recipesService = recipesService;
     _auth0Provider = auth0Provider;
+    _ingredientsService = ingredientsService;
   }
   private readonly RecipesService _recipesService;
   private readonly Auth0Provider _auth0Provider;
+  private readonly IngredientsService _ingredientsService;
 
   [Authorize]
   [HttpPost]
@@ -88,6 +90,24 @@ public class RecipesController : ControllerBase
       return BadRequest(e.Message);
     }
   }
+
+  [HttpGet("{recipeId}/ingredients")] // it adds the first slash for you
+  // its fine if something from recipes controller talks to ingredients service
+  // its also fine if it talks to recipes service which then recipes service talks to ingredients service
+  // but not recipesService to ingredient repository.
+  public ActionResult<List<Ingredient>> GetIngredientsForRecipe(int recipeId)
+  {
+    try
+    {
+      List<Ingredient> ingredients = _ingredientsService.GetIngredientsForRecipe(recipeId);
+      return Ok(ingredients);
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
 }
+
 
 
