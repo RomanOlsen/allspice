@@ -1,7 +1,3 @@
-
-using System.Reflection.Metadata.Ecma335;
-using MySqlConnector;
-
 namespace allspice.Repositories;
 
 public class RecipesRepository
@@ -66,5 +62,16 @@ public class RecipesRepository
     // return recipe;
 
     // return recipeData;
+  }
+
+  internal void DeleteRecipe(int recipeId)
+  {
+    string sql = @"DELETE FROM recipes WHERE id = @recipeId LIMIT 1;";
+    int rows = _db.Execute(sql, new { recipeId });
+    if (rows != 1)
+    {
+      throw new Exception("No rows were deleted (or many were!!!)");
+    }
+
   }
 }

@@ -25,16 +25,19 @@ public class RecipesService
   internal Recipe GetRecipeById(int recipeId)
   {
     Recipe recipe = _recipesRepository.GetRecipeById(recipeId);
+
+    if (recipe is null)
+    {
+      throw new Exception("We couldnt find a recipe with that id, so theres no way to update it");
+    }
+
     return recipe;
   }
 
   internal void UpdateRecipe(Recipe recipeData, int recipeId, Account userInfo)
   {
     Recipe foundRecipe = GetRecipeById(recipeId);
-    if (foundRecipe is null)
-    {
-      throw new Exception("We couldnt find a recipe with that id, so theres no way to update it");
-    }
+
     if (foundRecipe.CreatorId != userInfo.Id)
     {
       throw new Exception("403 forbidden error. You cannot edit someone else's recipe");
@@ -49,5 +52,16 @@ public class RecipesService
 
     _recipesRepository.UpdateRecipe(foundRecipe);
     // return recipe;
+  }
+
+  internal void DeleteRecipe(int recipeId, Account userInfo)
+  {
+    Recipe foundRecipe = GetRecipeById(recipeId);
+
+    if (foundRecipe.CreatorId != userInfo.Id)
+    {
+      throw new Exception("403 forbidden error. You cannot delete someone else's recipe");
+    }
+    _recipesRepository.DeleteRecipe(recipeId);
   }
 }
