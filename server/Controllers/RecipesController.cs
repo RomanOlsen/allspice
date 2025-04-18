@@ -91,8 +91,8 @@ public class RecipesController : ControllerBase
     }
   }
 
-  [HttpGet("{recipeId}/ingredients")] // it adds the first slash for you
-  // its fine if something from recipes controller talks to ingredients service
+  [HttpGet("{recipeId}/ingredients")] // NOTE it adds the first slash for you
+  // NOTE its fine if something from recipes controller talks to ingredients service
   // its also fine if it talks to recipes service which then recipes service talks to ingredients service
   // but not recipesService to ingredient repository.
   public ActionResult<List<Ingredient>> GetIngredientsForRecipe(int recipeId)
