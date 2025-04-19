@@ -66,3 +66,5 @@ SELECT * FROM favorites;
 SELECT favorites.*, recipes.* FROM favorites
      INNER JOIN recipes ON recipes.id = favorites.recipe_id
      WHERE favorites.id = 3;
+
+     SELECT favorites.*, recipes.*, accounts.* FROM favorites
