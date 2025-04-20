@@ -1,7 +1,3 @@
-
-
-using Microsoft.AspNetCore.Http.HttpResults;
-
 namespace allspice.Services;
 
 public class IngredientsService
@@ -16,6 +12,11 @@ public class IngredientsService
 
   internal Ingredient CreateIngredient(Ingredient ingredientData, Account userInfo)
   {
+    Recipe recipe = _recipesService.GetRecipeById(ingredientData.RecipeId);
+    if (userInfo.Id != recipe.CreatorId)
+    {
+      throw new Exception("You are forbidden! Thats not your recipe, so you cannot add any ingredients");
+    }
     Ingredient ingredient = _repository.CreateIngredient(ingredientData);
     return ingredient;
   }

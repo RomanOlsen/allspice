@@ -19,7 +19,6 @@ public class IngredientsController : ControllerBase
     try
     {
       Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
-      // ingredientData.
       Ingredient ingredient = _ingredientsService.CreateIngredient(ingredientData, userInfo);
       return Ok(ingredient);
     }
@@ -29,19 +28,6 @@ public class IngredientsController : ControllerBase
     }
   }
 
-  // [HttpGet("/{recipeId}/ingredients")]
-  // public ActionResult<List<Ingredient>> GetIngredientsForRecipe(int recipeId)
-  // {
-  //   try
-  //   {
-  //     List<Ingredient> ingredients = _ingredientsService.GetIngredientsForRecipe(recipeId);
-  //     return Ok(ingredients);
-  //   }
-  //   catch (Exception e)
-  //   {
-  //     return BadRequest(e.Message);
-  //   }
-  // }
   [Authorize]
   [HttpDelete("{ingredientId}")]
   public async Task<ActionResult<Recipe>> DeleteIngredient(int ingredientId)
