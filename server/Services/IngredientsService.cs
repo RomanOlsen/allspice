@@ -12,11 +12,7 @@ public class IngredientsService
 
   internal Ingredient CreateIngredient(Ingredient ingredientData, Account userInfo)
   {
-    Recipe recipe = _recipesService.GetRecipeById(ingredientData.RecipeId);
-    if (userInfo.Id != recipe.CreatorId)
-    {
-      throw new Exception("You are forbidden! Thats not your recipe, so you cannot add any ingredients");
-    }
+    GetRecipeAndCheckOwnership(ingredientData, userInfo);
     Ingredient ingredient = _repository.CreateIngredient(ingredientData);
     return ingredient;
   }
@@ -24,13 +20,7 @@ public class IngredientsService
   internal string DeleteIngredient(int ingredientId, Account userInfo)
   {
     Ingredient ingredient = _repository.GetIngredientById(ingredientId);
-    Recipe recipe = _recipesService.GetRecipeById(ingredient.Id);
-
-
-    if (userInfo.Id != recipe.CreatorId)
-    {
-      throw new Exception("You are forbidden! Thats not your recipe, so you cant delete this ingredient");
-    }
+    GetRecipeAndCheckOwnership(ingredient, userInfo);
     _repository.DeleteIngredient(ingredientId);
     return "It was deleted";
   }
@@ -39,5 +29,13 @@ public class IngredientsService
   {
     List<Ingredient> ingredients = _repository.GetIngredientsForRecipe(recipeId);
     return ingredients;
+  }
+  internal void GetRecipeAndCheckOwnership(Ingredient ingredient, Account userInfo)
+  {
+    Recipe recipe = _recipesService.GetRecipeById(ingredient.RecipeId);
+    if (userInfo.Id != recipe.CreatorId)
+    {
+      throw new Exception("You are forbidden! Thats not your recipe, so you cannot add or delete any ingredients");
+    }
   }
 }
