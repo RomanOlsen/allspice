@@ -14,49 +14,30 @@ watch(theme, () => {
   saveState('theme', theme.value)
 }, { immediate: true })
 
+function search(){
+  return "hi"
+}
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-md bg-codeworks">
-    <div class="container gap-2">
-      <RouterLink :to="{ name: 'Home' }" class="d-flex align-items-center text-light">
-        <!-- <img class="navbar-brand" alt="logo" src="/img/cw-logo.png" height="45" /> -->
-        <b class="fs-5">All Spice</b>
-      </RouterLink>
-      <!-- collapse button -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-links"
-        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="mdi mdi-menu text-light"></span>
-      </button>
-      <!-- collapsing menu -->
-      <div class="collapse navbar-collapse" id="navbar-links">
-        <ul class="navbar-nav">
-          <li>
-            <RouterLink :to="{ name: 'About' }" class="btn text-green selectable">
-              About
-            </RouterLink>
-          </li>
-        </ul>
-        <!-- LOGIN COMPONENT HERE -->
-        <div class="ms-auto">
-          <!-- <button class="btn text-light" @click="toggleTheme"
-            :title="`Enable ${theme == 'light' ? 'dark' : 'light'} theme.`">
-            <i v-if="theme == 'dark'" class="mdi mdi-weather-sunny"></i>
-            <i v-if="theme == 'light'" class="mdi mdi-weather-night"></i>
-          </button> -->
-        </div>
+
+  <div class="container-fluid navbarPictureBg text-end">
+
+    <div class="row navbarPicture text-light sahitya-regular">
+      <div class="col-12 d-flex justify-content-end align-items-center mb-5 pe-3">
+        <form @submit.prevent="search()">
+          <input id="searchbar" type="text" placeholder="Search...">
+          <label for="searchbar">   <button class="btn"> <span class="mdi mdi-magnify"></span> </button></label>
+          
+        </form>
         <Login />
       </div>
-    </div>
-  </nav>
-  <div class="container-fluid navbarPictureBg">
-    <Login />
-    <div class="row navbarPicture text-light sahitya-regular">
-      <div class="col-12 d-flex align-items-center flex-column justify-content-center">
-        <h1 class="">All-spice</h1>
-        <h2 class=""> Cherish your cooking and their family </h2>
+      <div class="col-12 d-flex align-items-center flex-column mb-5 pb-5">
+        <!-- i removed justify-content-center -->
+        <h1 class="text-center">All-spice</h1>
+        <h2 class="text-center"> Cherish your cooking and their family </h2>
       </div>
-      
+
     </div>
   </div>
 
@@ -84,14 +65,15 @@ a {
 
 .navbarPicture {
   // object-fit: cover;
-  width: 100%;
+  // width: 100%;
   margin: none;
   padding: none;
   height: 40dvh;
   // object-fit: cover;
   // transform: rotate(90deg);
 }
-.navbarPictureBg{
+
+.navbarPictureBg {
   background-image: url("https://images.unsplash.com/photo-1612549225312-900aa64d56bb?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
   background-size: cover;
   background-position: center;
