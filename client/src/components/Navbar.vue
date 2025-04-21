@@ -22,7 +22,7 @@ function search() {
 
 <template>
 
-  <div class="container-fluid navbarPictureBg text-end">
+  <div class="container navbarPictureBg text-end rounded mt-4 shadow">
 
     <div class="row navbarPicture text-light sahitya-regular">
       <div class="col-12 d-flex justify-content-end align-items-center mb-5 pe-3">
@@ -35,7 +35,7 @@ function search() {
       </div>
       <div class="col-12 d-flex align-items-center flex-column mb-5 pb-5">
         <!-- i removed justify-content-center -->
-        <h1 class="text-center">All-spice</h1>
+        <h1 class="text-center sahitya-bold">All-Spice</h1>
         <h2 class="text-center"> Cherish your cooking and their family </h2>
       </div>
 
