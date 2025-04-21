@@ -7,7 +7,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <button class="btn btn-success create-recipe">+</button>
+        <button class="btn btn-success create-recipe fs-1 shadow p-0"><span class="mdi mdi-plus"></span></button>
 
       </div>
     </div>

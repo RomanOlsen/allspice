@@ -9,7 +9,7 @@ import { RouterView } from 'vue-router';
   <header>
     <Navbar />
   </header>
-  <main>
+  <main class="sahitya-regular">
     <RouterView />
   </main>
   <footer class=" text-center">

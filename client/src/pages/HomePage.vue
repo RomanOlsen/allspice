@@ -1,8 +1,23 @@
 <script setup>
 import Create from '@/components/Create.vue';
+import { recipesService } from '@/services/RecipesService.js';
+import { logger } from '@/utils/Logger.js';
+import { Pop } from '@/utils/Pop.js';
+import { onMounted } from 'vue';
 
+onMounted(() => {
+  getAllRecipes()
+})
 
-
+async function getAllRecipes() {
+  try {
+    await recipesService.getAllRecipes()
+  }
+  catch (error) {
+    Pop.error(error, 'could not get recipes!');
+    logger.log("could not get recipes", error)
+  }
+}
 
 </script>
 
