@@ -1,4 +1,6 @@
 @import '_main.scss';
+@import url('https://fonts.googleapis.com/css2?family=Sahitya:wght@400;700&display=swap');
+
 
 #app {
   display: flex;
@@ -17,4 +19,16 @@ main {
   flex-direction: column;
   justify-content: start;
   align-items: end;
+}
+
+.sahitya-regular {
+  font-family: "Sahitya", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.sahitya-bold {
+  font-family: "Sahitya", serif;
+  font-weight: 700;
+  font-style: normal;
 }
