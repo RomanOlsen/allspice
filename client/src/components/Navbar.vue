@@ -2,6 +2,7 @@
 import { ref, watch } from 'vue';
 import { loadState, saveState } from '../utils/Store.js';
 import Login from './Login.vue';
+import { logger } from '@/utils/Logger.js';
 
 const theme = ref(loadState('theme') || 'light')
 
@@ -14,8 +15,8 @@ watch(theme, () => {
   saveState('theme', theme.value)
 }, { immediate: true })
 
-function search(){
-  return "hi"
+function search() {
+  logger.log("hi")
 }
 </script>
 
@@ -26,9 +27,9 @@ function search(){
     <div class="row navbarPicture text-light sahitya-regular">
       <div class="col-12 d-flex justify-content-end align-items-center mb-5 pe-3">
         <form @submit.prevent="search()">
-          <input id="searchbar" type="text" placeholder="Search...">
-          <label for="searchbar">   <button class="btn"> <span class="mdi mdi-magnify"></span> </button></label>
-          
+          <input id="searchbar" type="text" placeholder="Search..." required>
+          <label for="searchbar"> <button class="btn"> <span class="mdi mdi-magnify"></span> </button></label>
+
         </form>
         <Login />
       </div>
