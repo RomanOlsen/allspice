@@ -42,4 +42,19 @@ public class AccountController : ControllerBase
       return BadRequest(e.Message);
     }
   }
+  [HttpGet("recipes")] // recipes YOU made
+  public async Task<ActionResult<List<Recipe>>> GetMyRecipes()
+  {
+    try
+    {
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      string userInfoId = userInfo.Id;
+      List<Recipe> recipes = _accountService.GetMyRecipes(userInfoId);
+      return recipes;
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
 }

@@ -1,4 +1,5 @@
 
+
 namespace allspice.Repositories;
 
 public class AccountsRepository
@@ -67,5 +68,17 @@ public class AccountsRepository
     return favorites;
   }
 
+  internal List<Recipe> GetMyRecipes(string userInfoId)
+  {
+    string sql = @"
+    SELECT 
+    recipes.*, 
+    accounts.* 
+    FROM recipes
+    INNER JOIN accounts ON accounts.id = recipes.creator_id 
+    WHERE recipes.creator_id = @userInfoId;";
+    List<Recipe> recipes = _db.Query(sql, (Recipe recipe, Account account) => { recipe.Creator = account; return recipe; }, new { userInfoId }).ToList();
+    return recipes;
+  }
 }
 

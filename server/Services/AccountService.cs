@@ -42,4 +42,10 @@ public class AccountService
     List<FavoriteRecipe> favorites = _repo.GetAccountFavoriteRecipes(userInfoId);
     return favorites;
   }
+
+  internal List<Recipe> GetMyRecipes(string userInfoId)
+  {
+    List<Recipe> recipes = _repo.GetMyRecipes(userInfoId);
+    return recipes;
+  }
 }
