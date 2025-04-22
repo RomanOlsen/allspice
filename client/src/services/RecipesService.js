@@ -25,7 +25,7 @@ class RecipesService{
     this.mapAndAddToAppState(response)
   }
   async getMyRecipes() {
-    // const response = await api.get("account/favorites")
+    const response = await api.get("account/recipes") // TODO now lets write this on our back end
   }
   async getFavoriteRecipes() {
         const response = await api.get("account/favorites")

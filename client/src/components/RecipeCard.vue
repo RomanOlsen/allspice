@@ -13,7 +13,8 @@ defineProps({
     <div class="card-header d-flex justify-content-between align-items-center"><span
         class="recipe-category-bg rounded-pill px-3">{{ recipeProp.category }}</span>
       <button class="btn recipe-category-bg">
-        <span class="mdi mdi-heart text-danger"></span>
+        <span v-if="recipeProp.favoriteId" class="mdi mdi-heart text-danger" title="click to unfavorite"></span>
+        <span v-else class="mdi mdi-heart text-light" title="click to favorite"></span>
       </button>
     </div>
     <div class="card-body"></div>

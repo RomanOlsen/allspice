@@ -9,6 +9,9 @@ export class Recipe extends DatabaseDefaults{
     this.category = d.category
     this.creatorId = d.creatorId
     this.creator = d.creator
-
+    // favorite
+    this.favoriteId = d.favoriteId
   }
 }
+
+// export class FavoriteRecipe
