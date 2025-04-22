@@ -39,7 +39,7 @@ async function getAllRecipes() {
 
         </div>
       </div>
-      <div v-for="recipe in recipes" :key="recipe.id" class="col-4">
+      <div v-for="recipe in recipes" :key="recipe.id" class="px-5 col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
         <RecipeCard :recipeProp="recipe" />
       </div>
     </div>
@@ -51,6 +51,7 @@ async function getAllRecipes() {
 .choose-section {
   position: absolute;
   top: 40dvh;
+  z-index: 1;
   // left: 50%;
   // transform: translate(-50%, -50%);
 
