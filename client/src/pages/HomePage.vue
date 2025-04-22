@@ -2,6 +2,7 @@
 import { AppState } from '@/AppState.js';
 import Create from '@/components/Create.vue';
 import RecipeCard from '@/components/RecipeCard.vue';
+import RecipeDetailsModal from '@/components/RecipeDetailsModal.vue';
 import { recipesService } from '@/services/RecipesService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
@@ -29,6 +30,7 @@ async function getRecipeResults(typeNumber) {
 <template>
   <div class="container">
     <div class="row">
+
       <div class="col-12 d-flex justify-content-center">
         <div class="text-center choose-section bg-light rounded shadow">
           <!-- <div class="position-relative"> -->
@@ -46,6 +48,7 @@ async function getRecipeResults(typeNumber) {
     </div>
   </div>
   <Create />
+  <RecipeDetailsModal />
 </template>
 
 <style scoped lang="scss">
