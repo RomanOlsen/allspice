@@ -8,14 +8,15 @@ import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted } from 'vue';
 
 const recipes = computed(() => AppState.recipes)
+// const type = AppState.type
 
 onMounted(() => {
-  getAllRecipes()
+  getRecipeResults(1)
 })
 
-async function getAllRecipes() {
+async function getRecipeResults(typeNumber) {
   try {
-    await recipesService.getAllRecipes()
+    await recipesService.getRecipeResults(typeNumber)
   }
   catch (error) {
     Pop.error(error, 'could not get recipes!');
@@ -32,9 +33,9 @@ async function getAllRecipes() {
         <div class="text-center choose-section bg-light rounded shadow">
           <!-- <div class="position-relative"> -->
 
-          <button class="btn btn-light">Home</button>
-          <button class="btn btn-light">My Recipes</button>
-          <button class="btn btn-light">Favorites</button>
+          <button @click="getRecipeResults(1)" class="btn btn-light">Home</button>
+          <button @click="getRecipeResults(2)" class="btn btn-light">My Recipes</button>
+          <button @click="getRecipeResults(3)" class="btn btn-light">Favorites</button>
           <!-- </div> -->
 
         </div>
