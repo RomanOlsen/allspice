@@ -1,10 +1,24 @@
 <script setup>
 import { Recipe } from '@/models/Recipe.js';
 import RecipeDetailsModal from './RecipeDetailsModal.vue';
+import { Pop } from '@/utils/Pop.js';
+import { logger } from '@/utils/Logger.js';
+import { recipesService } from '@/services/RecipesService.js';
 
 defineProps({
   recipeProp: { type: Recipe, required: true }
 })
+
+async function setActiveRecipe(recipeId) {
+  try {
+    await recipesService.setActiveRecipe(recipeId)
+  }
+  catch (error) {
+    Pop.error(error, 'couldnt set active recipe');
+    logger.log('could not set active recipe', error)
+
+  }
+}
 </script>
 
 
@@ -12,7 +26,7 @@ defineProps({
 <template>
   <div class="position-relative">
 
-    <div class="card mt-4 shadow text-light" :style="{ backgroundImage: `url(${recipeProp.img})` }"
+    <div @click="setActiveRecipe(recipeProp.id)" class="card mt-4 shadow text-light" :style="{ backgroundImage: `url(${recipeProp.img})` }"
       data-bs-toggle="modal" data-bs-target="#RecipeDetailsModal" type="button">
       <div class="card-header d-flex justify-content-between align-items-center"><span
           class="recipe-category-bg rounded-pill px-3">{{ recipeProp.category }}</span>

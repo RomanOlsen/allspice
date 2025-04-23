@@ -38,5 +38,12 @@ class RecipesService{
     const recipes = response.data.map(pojo => new Recipe(pojo))
     AppState.recipes = recipes
   }
+  ///////////////////////////////////////////////////////////////////////
+  async setActiveRecipe(recipeId) {
+    const response = await api.get(`api/recipes/${recipeId}`)
+    const activeRecipe = new Recipe(response.data)
+    AppState.activeRecipe = activeRecipe
+    logger.log(activeRecipe)
+  }
 }
 export const recipesService = new RecipesService()
